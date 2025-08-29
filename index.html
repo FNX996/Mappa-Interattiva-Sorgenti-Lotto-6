@@ -39,7 +39,6 @@
         <script src="js/rbush.min.js"></script>
         <script src="js/labelgun.min.js"></script>
         <script src="js/labels.js"></script>
-        <script src="js/leaflet.wms.js"></script>
         <script src="js/leaflet.photon.js"></script>
         <script src="js/leaflet-measure.js"></script>
         <script src="js/leaflet.markercluster.js"></script>
@@ -113,21 +112,19 @@
         var bounds_group = new L.featureGroup([]);
         function setBounds() {
         }
-        map.createPane('pane_Ortofoto2012_0');
-        map.getPane('pane_Ortofoto2012_0').style.zIndex = 400;
-        var layer_Ortofoto2012_0 = L.WMS.layer("https://geoservizi.regione.vda.it/geoserver/sctBaseMap/wms", "Ortofoto 2012", {
-            pane: 'pane_Ortofoto2012_0',
-            format: 'image/png',
-            uppercase: true,
-            transparent: true,
-            continuousWorld : true,
-            tiled: true,
-            info_format: 'text/html',
-            opacity: 1,
-            identify: false,
-            attribution: '',
+        map.createPane('pane_GoogleSatellite_0');
+        map.getPane('pane_GoogleSatellite_0').style.zIndex = 400;
+        var layer_GoogleSatellite_0 = L.tileLayer('https://mt1.google.com/vt/lyrs=s&x={x}&y={y}&z={z}', {
+            pane: 'pane_GoogleSatellite_0',
+            opacity: 0.7,
+            attribution: '<a href="https://www.google.at/permissions/geoguidelines/attr-guide.html">Map data ©2015 Google</a>',
+            minZoom: 1,
+            maxZoom: 28,
+            minNativeZoom: 0,
+            maxNativeZoom: 20
         });
-        map.addLayer(layer_Ortofoto2012_0);
+        layer_GoogleSatellite_0;
+        map.addLayer(layer_GoogleSatellite_0);
         function pop_Confini_1(feature, layer) {
             var popupContent = '<table>\
                 </table>';
@@ -754,7 +751,7 @@
             {label: '<img src="legend/BaciniSecondari_3.png" /> Bacini Secondari', layer: layer_BaciniSecondari_3},
             {label: '<img src="legend/BacinoDora_2.png" /> Bacino Dora', layer: layer_BacinoDora_2},]},
             {label: 'Confini<br /><table><tr><td style="text-align: center;"><img src="legend/Confini_1_Courmayeur0.png" /></td><td>Courmayeur</td></tr><tr><td style="text-align: center;"><img src="legend/Confini_1_Gignod1.png" /></td><td>Gignod</td></tr><tr><td style="text-align: center;"><img src="legend/Confini_1_LaSalle2.png" /></td><td>La Salle</td></tr><tr><td style="text-align: center;"><img src="legend/Confini_1_LaThuile3.png" /></td><td>La Thuile</td></tr><tr><td style="text-align: center;"><img src="legend/Confini_1_Morgex4.png" /></td><td>Morgex</td></tr><tr><td style="text-align: center;"><img src="legend/Confini_1_ValledAostaValléedAoste5.png" /></td><td>Valle d\'Aosta / Vallée d\'Aoste</td></tr></table>', layer: layer_Confini_1},
-            {label: "Ortofoto 2012", layer: layer_Ortofoto2012_0},]
+            {label: "Google Satellite", layer: layer_GoogleSatellite_0},]
         var lay = L.control.layers.tree(null, overlaysTree,{
             //namedToggle: true,
             //selectorBack: false,
